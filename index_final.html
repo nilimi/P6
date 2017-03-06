@@ -16,13 +16,14 @@
 			function draw(data) {
 			  "use strict";
 			  var margin = 75,
-				  width = 1400 - margin,
-				  height = 600 - margin;
+				  width = 700 - margin,
+				  height = 400 - margin;
 
 				d3.select('body')
+					.attr('align','center')
 					.append('h1')
 					.text('Who Survived the Titanic?');
-					
+										
 				var svg = d3.select('body')
 					.append('svg')
 						.attr("width", width + margin)
@@ -30,11 +31,11 @@
 				
 				var myChart = new dimple.chart(svg, data);
 				var x = myChart.addCategoryAxis("x", ['Sex', 'Passenger Class']);
-				x.title = 'Class and Sex of Passenger';
+				x.title = 'Passenger Class and Sex of Passenger';
 				var y = myChart.addMeasureAxis("y", "Survival Rate");
-				y.title = 'Survival Count';
+				y.title = 'Survival Rate by Percentage';
 				var mySeries = myChart.addSeries("Passenger Class", dimple.plot.bar);
-				var myLegend = myChart.addLegend("90%", "5%", "5%", "10%", "right");
+				var myLegend = myChart.addLegend("90%", "10%", "10%", "20%", "right");
 				myChart.draw();
 
 			};
@@ -42,7 +43,7 @@
 	</head>
 <body>
 	<script type="text/javascript">
-	d3.csv("data/titanic_survival_rate.csv", draw);
+	d3.csv("titanic_survival_rate.csv", draw);
 	</script>
 </body>
 </html>
