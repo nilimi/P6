@@ -5,36 +5,36 @@
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
 		
-		<script type="text/javascript">
-			// creating function  to draw chart
+		<style>
+			h1 {
+				text-align: center;
+				color: black;
+			}
+		</style>
+
+        <script type="text/javascript">
 			function draw(data) {
 			  "use strict";
 			  var margin = 75,
 				  width = 700 - margin,
 				  height = 400 - margin;
 
-				// centering body element and adding title
 				d3.select('body')
 					.attr('align','center')
 					.append('h1')
 					.text('Who Survived the Titanic?');
-				
-				// adding svg to body with the width and height variables
+										
 				var svg = d3.select('body')
 					.append('svg')
 						.attr("width", width + margin)
 						.attr("height", height + margin);
 				
-				// adding dimple chart
 				var myChart = new dimple.chart(svg, data);
-				//adding axes and titles
 				var x = myChart.addCategoryAxis("x", ['Sex', 'Passenger Class']);
 				x.title = 'Passenger Class and Sex of Passenger';
 				var y = myChart.addMeasureAxis("y", "Survival Rate");
 				y.title = 'Survival Rate by Percentage';
-				// grouping by Passenger Class
 				var mySeries = myChart.addSeries("Passenger Class", dimple.plot.bar);
-				// adding and positioning legend in upper right
 				var myLegend = myChart.addLegend("90%", "10%", "10%", "20%", "right");
 				myChart.draw();
 
